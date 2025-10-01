@@ -1,0 +1,26 @@
+POST http://localhost:8080/posts
+Content-Type: application/json
+
+{
+    "title":"첫 글",
+    "content":"헬로 Tinylog"
+}
+
+### 목록
+GET http://localhost:8080/posts?page=0&size=10
+
+
+### 단건
+GET http://localhost:8080/posts/1
+
+
+### 수정
+PUT http://localhost:8080/posts/1
+Content-Type: application/json
+
+{
+    "title": "제목 수정만 해봄"
+}
+
+### 삭제
+DELETE http://localhost:8080/posts/1
