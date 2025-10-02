@@ -26,8 +26,9 @@ public class PostController {
     //글 목록
     @GetMapping
     public Page<PostResponse> list(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "10") int size){
-        return service.list(page, size);
+                                   @RequestParam(defaultValue = "10") int size,
+                                   @RequestParam(required = false) String query){
+        return service.list(query, page, size);
     }
 
     //글 단건 조회

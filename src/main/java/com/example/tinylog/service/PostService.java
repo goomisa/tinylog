@@ -26,9 +26,12 @@ public class PostService {
     }
 
     //글 목록 (페이징)
-    public Page<PostResponse> list(int page, int size) {
+    public Page<PostResponse> list(String query, int page, int size) {
         PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
-        return repo.findAll(pageable).map(PostMapper::toResponse);
+        if (query == null || query.isBlank()) {
+            return repo.findAll(pageable).map(PostMapper::toResponse);
+        }
+        return repo.findByTitleContainingIgnoreCase(query, pageable).map(PostMapper::toResponse);
     }
 
     //글 단건 조회
